@@ -1,4 +1,4 @@
-package tech.seedhk.mq;
+package tech.seedhk.mq.topic;
 
 import org.apache.activemq.ActiveMQConnectionFactory;
 
@@ -6,11 +6,12 @@ import javax.jms.*;
 
 /**
  * Created by Seed on 2017/10/14.
+ * 队列topic模式下的消息队列
  */
 public class AppProducer {
 
     public static final  String url="tcp://127.0.0.1:61616";
-    public static final String queueName="queueName";
+    public static final String topicName="topicName";
 
     public static void main(String[] args) throws JMSException {
 
@@ -22,7 +23,7 @@ public class AppProducer {
 
         Session session=connection.createSession(false,Session.AUTO_ACKNOWLEDGE);
 
-        Destination destination=session.createQueue(queueName);
+        Destination destination=session.createTopic(topicName);
 
         MessageProducer messageProducer = session.createProducer(destination);
 
